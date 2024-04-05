@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Share Paint</string>
+    <string name="dismiss_dialog">Отмена</string>
+    <string name="confirm_dialog">OK</string>
+    <string name="_00_00_00_00_00_00">00:00:00:00:00:00</string>
+    <string name="no_name">no name</string>
+    <string name="begin_session">Начать сессию</string>
+    <string name="return_main_screen">На главный экран</string>
+    <string name="connect_to_game">подключиться к игре</string>
+    <string name="bluetooth_not_connected">Ошибка подключения к Bluetooth устройству</string>
+    <string name="radio_channel_profile">Подключение устройства по каналу:</string>
+    <string name="mode_of_device">"Это устройство выступит как: "</string>
+    <string name="bluetooth_adapter_is_not_available">Bluetooth adapter is not available</string>
+    <string name="close_dialog">Закрыть</string>
+    <string name="skip_dialog">Пропустить</string>
+    <string name="need_help">Интрукция</string>
+</resources>
