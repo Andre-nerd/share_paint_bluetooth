@@ -20,14 +20,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import kotlinx.coroutines.delay
@@ -35,44 +32,39 @@ import ru.share_paint.zoomparty.domain.config.Configuration
 import ru.share_paint.zoomparty.domain.model.WrapperDataContainer
 import ru.share_paint.zoomparty.presentation.ServiceViewModel
 import ru.share_paint.zoomparty.presentation.navigation.Route
+import ru.share_paint.zoomparty.presentation.sreens.setting.SelectGameOnceTwice
 import ru.share_paint.zoomparty.presentation.ui.widgets.ProgressBarWidget
 import ru.tic_tac_toe.zoomparty.R
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun GameScreen(serviceViewModel: ServiceViewModel, navController: NavHostController, dataContainer: WrapperDataContainer) {
-    val openErrorWindow = dataContainer.errorConnect.collectAsState()
-    val context = LocalContext.current
-    val btNotConnected = stringResource(R.string.bluetooth_not_connected)
-    val showGameButton = remember { mutableStateOf(true) }
+    serviceViewModel.readSettingToSharedPref()
+    val isShowSelectGameType = serviceViewModel.showSelectGameType.collectAsState()
     val showProgressBar = remember { mutableStateOf(false) }
-    val coroutineScope = rememberCoroutineScope()
     Box {
         DrawScreen(dataContainer) { cX, cY, dX, dY, color, width ->
             Log.e(Configuration.DRAW_LOG_TAG, "cX,cY,dX,dY -> $cX, $cY, $dX, $dY ->")
             serviceViewModel.sendDragAmountToRemoteService(cX, cY, dX, dY, color, width)
         }
     }
-//    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-//        if (showGameButton.value) {
-//            StartButton() {
-//                showGameButton.value = false
-//                try {
-//                    coroutineScope.launch(Dispatchers.IO) {
-//                        serviceViewModel.connectionWithRemoteService(Configuration.getSelectedDevice())
-//                        showProgressBar.value = true
-//                        delay(1000) // Задержка на установление связи между устройствами
-//                        showProgressBar.value = false
-//                    }
-//
-//                } catch (t: Throwable) {
-//                    Toast.makeText(context, btNotConnected, Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-//    }
+
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         if (showProgressBar.value) ProgressBarWidget()
+    }
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        if (isShowSelectGameType.value) {
+            SelectGameOnceTwice(
+                onceGame = {
+                    serviceViewModel.setSelectGameType(false)
+
+                },
+                twiceGame = {
+                    serviceViewModel.setSelectGameType(false)
+                    navController.navigate(Route.Setting.name)
+                }
+            )
+        }
     }
     Column(
         modifier = Modifier
@@ -87,7 +79,7 @@ fun GameScreen(serviceViewModel: ServiceViewModel, navController: NavHostControl
                     dataContainer.cleanAllPointsFromMessage()
                 })
             Spacer(modifier = Modifier.size(16.dp))
-            Image(painter = painterResource(id = R.drawable.ico_setting), contentDescription = null,
+            Image(painter = painterResource(id = R.drawable.two_person), contentDescription = null,
                 modifier = Modifier.clickable {
                     navController.navigate(Route.Setting.name)
                 })

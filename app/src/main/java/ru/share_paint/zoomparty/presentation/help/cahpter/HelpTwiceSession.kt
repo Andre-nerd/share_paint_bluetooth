@@ -1,6 +1,8 @@
 package ru.share_paint.zoomparty.presentation.help.cahpter
 
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -34,9 +37,10 @@ import ru.tic_tac_toe.zoomparty.R
 
 
 @Composable
-fun HelpAboutApp(
+fun HelpTwiceSession(
     onDismissRequest:() -> Unit,
 ) {
+    val context = LocalContext.current
     Dialog(
         onDismissRequest = { onDismissRequest() },
         properties = DialogProperties(usePlatformDefaultWidth = false)
@@ -51,53 +55,72 @@ fun HelpAboutApp(
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxSize(),
+                    .fillMaxSize()
+                    .padding(sUiPadding.dp),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
                     modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .padding(sUiPadding.dp),
-                    text = stringResource(R.string.info_about_app),
+                        .align(Alignment.CenterHorizontally),
+                    text = stringResource(R.string.twice_session_title),
                     fontSize = fontSize.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
                     modifier = Modifier
-                        .align(Alignment.Start)
-                        .padding(sUiPadding.dp),
-                    text = stringResource(R.string.draw_together_1_1),
+                        .align(Alignment.Start),
+                    text = stringResource(R.string.twice_session_connect_bluetooth),
                     style = styleAboutText
                 )
-
+                Image(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(nPadding.dp)
+                        .clickable {
+                            val urlIntent = Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://guidebooks.google.com/pixel/optimize-your-life/how-to-connect-a-bluetooth-device")
+                            )
+                            context.startActivity(urlIntent)
+                        },
+                    contentScale = ContentScale.FillWidth,
+                    painter = painterResource(id = R.drawable.guide_google), contentDescription = null,
+                )
+                Text(
+                    modifier = Modifier
+                        .align(Alignment.Start),
+                    text = stringResource(R.string.twice_session_select_role_1),
+                    style = styleAboutText
+                )
                 Image(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(nPadding.dp)
                         .clickable { },
                     contentScale = ContentScale.FillWidth,
-                    painter = painterResource(id = R.drawable.help_draw_1_3), contentDescription = null,
+                    painter = painterResource(id = R.drawable.help_twice_session_master), contentDescription = null,
                 )
                 Text(
                     modifier = Modifier
-                        .align(Alignment.Start)
-                        .padding(sUiPadding.dp),
-                    text = stringResource(R.string.draw_together_1_2),
+                        .align(Alignment.Start),
+                    text = stringResource(R.string.twice_session_select_role_2),
                     style = styleAboutText
                 )
-                Text(
+                Image(
                     modifier = Modifier
-                        .align(Alignment.Start)
-                        .padding(sUiPadding.dp),
-                    text = stringResource(R.string.draw_together_1_3),
-                    style = styleAboutText
+                        .fillMaxSize()
+                        .padding(nPadding.dp)
+                        .clickable { },
+                    contentScale = ContentScale.FillWidth,
+                    painter = painterResource(id = R.drawable.help_twice_session_slave), contentDescription = null,
                 )
+
                 Text(
                     modifier = Modifier
                         .align(Alignment.Start)
                         .padding(sUiPadding.dp),
-                    text = stringResource(R.string.version_app),
+                    text = stringResource(R.string.twice_session_start_game),
                     style = styleAboutText
                 )
 

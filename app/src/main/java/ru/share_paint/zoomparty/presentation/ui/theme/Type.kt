@@ -70,3 +70,12 @@ val DownFamily = FontFamily(
 val KashmirFamily = FontFamily(
     Font(R.font.kashmir, FontWeight.Normal),
 )
+val FestaFamily = FontFamily(
+    Font(R.font.festa_classica, FontWeight.Normal),
+)
+val GameStyle = TextStyle(
+    fontFamily = FestaFamily, fontSize = 16.sp, fontWeight = FontWeight.Bold
+)
+val GameStyleLarge = TextStyle(
+    fontFamily = FestaFamily, fontSize = 24.sp, fontWeight = FontWeight.Bold
+)

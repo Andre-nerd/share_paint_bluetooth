@@ -14,21 +14,19 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import dagger.hilt.android.AndroidEntryPoint
-import ru.share_paint.zoomparty.presentation.ui.widgets.ShowScreenRationalePermission
 import ru.share_paint.zoomparty.App
 import ru.share_paint.zoomparty.domain.model.WrapperDataContainer
 import ru.share_paint.zoomparty.presentation.navigation.NavigateRoute
 import ru.share_paint.zoomparty.presentation.ui.theme.Share_Paint_Theme
+import ru.share_paint.zoomparty.presentation.ui.widgets.ShowScreenRationalePermission
+import ru.tic_tac_toe.zoomparty.R
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -39,27 +37,25 @@ class MainActivity : ComponentActivity() {
             val intent = result.data
         }
     }
+
     @Inject
     lateinit var dataContainer: WrapperDataContainer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if(App.bluetoothAdapter == null){
-            Toast.makeText(this,"Bluetooth не доступен на устройстве. Приложение будет закрыто", Toast.LENGTH_LONG).show()
-            Thread.sleep(1000)
-            finish()
+        if (App.bluetoothAdapter == null) {
+            Toast.makeText(this, getString(R.string.bluetooth_not_available_twice_session_not_available), Toast.LENGTH_LONG).show()
         }
-        if (!App.bluetoothAdapter!!.isEnabled) {
+        if (App.bluetoothAdapter != null && !App.bluetoothAdapter!!.isEnabled) {
             openBTActivityForResult()
         }
         setContent {
             Share_Paint_Theme {
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    FeatureThatRequiresPermissions()
-                }
+                FeatureThatRequiresPermissions()
             }
         }
     }
+
 
     @OptIn(ExperimentalPermissionsApi::class)
     @Composable
@@ -99,7 +95,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(dataContainer: WrapperDataContainer){
+fun MainScreen(dataContainer: WrapperDataContainer) {
     val navController = rememberNavController()
     NavigateRoute(navController = navController, dataContainer = dataContainer)
 }

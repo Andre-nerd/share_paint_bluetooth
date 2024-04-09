@@ -23,10 +23,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.share_paint.zoomparty.presentation.ui.theme.cMagenta
+import ru.share_paint.zoomparty.presentation.ui.theme.lightMagenta
 import ru.share_paint.zoomparty.presentation.ui.theme.minMagenta
 
 @SuppressLint("UnusedTransitionTargetStateParameter")
@@ -67,8 +69,54 @@ fun FavoriteButton(
         ) { 90.dp }
 
         Icon(
-//            imageVector = if (isChecked) Icons.Filled.AccountBox else Icons.Filled.AccountCircle,
             imageVector = imageVector,
+            contentDescription = null,
+            tint = tint,
+            modifier = Modifier.size(size)
+        )
+    }
+}
+
+@SuppressLint("UnusedTransitionTargetStateParameter")
+@Composable
+fun FavoriteButton(
+    isChecked: Boolean,
+    painter: Painter,
+    onClick: () -> Unit
+) {
+    IconToggleButton(
+        modifier = Modifier.size(120.dp),
+        checked = isChecked,
+        onCheckedChange = { onClick() }
+    ) {
+        val transition = updateTransition(isChecked, label = "Checked indicator")
+
+        val tint by transition.animateColor(
+            label = "Tint"
+        ) { isChecked ->
+            if (isChecked) cMagenta else lightMagenta
+        }
+
+        val size by transition.animateDp(
+            transitionSpec = {
+                if (false isTransitioningTo true) {
+                    keyframes {
+                        durationMillis = 250
+                        90.dp at 0 with LinearOutSlowInEasing // for 0-15 ms
+                        100.dp at 15 with FastOutLinearInEasing // for 15-75 ms
+                        110.dp at 75 // ms
+                        120.dp at 150 // ms
+                    }
+                } else {
+                    spring(stiffness = Spring.StiffnessVeryLow)
+                }
+            },
+            label = "Size"
+        ) { 90.dp }
+
+        Icon(
+//            imageVector = if (isChecked) Icons.Filled.AccountBox else Icons.Filled.AccountCircle,
+            painter = painter,
             contentDescription = null,
             tint = tint,
             modifier = Modifier.size(size)

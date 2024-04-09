@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -38,9 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import ru.share_paint.zoomparty.domain.config.Configuration
-import ru.share_paint.zoomparty.presentation.sreens.getHeightDialogWindow
-import ru.share_paint.zoomparty.presentation.ui.theme.CianLight
-import ru.share_paint.zoomparty.presentation.ui.theme.KashmirFamily
+import ru.share_paint.zoomparty.presentation.ui.theme.GameStyle
 import ru.share_paint.zoomparty.presentation.ui.theme.Orange
 import ru.share_paint.zoomparty.presentation.ui.theme.fontSizeSmall
 import ru.share_paint.zoomparty.presentation.ui.theme.nPadding
@@ -65,7 +62,7 @@ fun SelectBTDevice() {
     var selectedDevice by remember { mutableStateOf(nameDevice) }
 
     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-        Text(text = "Подключиться к мастер-устройству:", fontFamily = KashmirFamily, fontSize = 24.sp, color = CianLight)
+        Text(text = stringResource(R.string.connect_to_dover_device), style = GameStyle)
     }
     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
         Text(text = fullName, style = styleAboutText, color = Orange)
@@ -77,7 +74,7 @@ fun SelectBTDevice() {
         var nSelected = Configuration.getIndexSelectedDevice()
         if (nSelected == -1) nSelected = 0
         DialogSelectBTDevice(
-            title = "Cписок мастер-устройств",
+            title = stringResource(R.string.list_master_devices),
             subTitle = null,
             radioOptions = Configuration.boundedDevices,
             nSelectedElement = nSelected,
@@ -102,13 +99,13 @@ fun DialogSelectBTDevice(
     onConfirmation: (BluetoothDevice) -> Unit,
 ) {
     if (radioOptions.isEmpty()) {
-        Toast.makeText(LocalContext.current, "Доверенных устройств не найдено. Проверьте подключение bluetooth", Toast.LENGTH_LONG).show()
+        Toast.makeText(LocalContext.current, stringResource(R.string.dover_devices_not_found), Toast.LENGTH_LONG).show()
         return
     }
     val selected = if (nSelectedElement > radioOptions.size - 1) 0 else nSelectedElement
     var selectedOption by remember { mutableStateOf(radioOptions[selected]) }
 
-    val cHeight = getHeightDialogWindow(radioOptions.size)
+
 
     Dialog(
         onDismissRequest = { onDismissRequest() },
@@ -118,7 +115,6 @@ fun DialogSelectBTDevice(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(cHeight.dp)
                 .padding(16.dp),
             shape = RoundedCornerShape(16.dp),
         ) {

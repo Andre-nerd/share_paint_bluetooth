@@ -19,7 +19,7 @@ fun NavigateRoute(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Route.Setting.name
+        startDestination = Route.Game.name
     ) {
         composable(route = Route.Setting.name) {
             SelectMasterOrSlave(serviceViewModel = serviceViewModel, navController = navController)

@@ -13,10 +13,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
+import ru.tic_tac_toe.zoomparty.R
 
 
 @OptIn(ExperimentalPermissionsApi::class)
@@ -27,22 +29,22 @@ fun ShowScreenRationalePermission(permissionsState:MultiplePermissionsState){
         .padding(12.dp), contentAlignment = Alignment.Center) {
         Column(modifier = Modifier.padding(36.dp)) {
             val textToShow = if (permissionsState.shouldShowRationale) {
-                "Обмен данными между мобильным приложением и сервером абонентского терминала осуществляется с помощью каналов  радиосвязи Bluetooth или Wi-Fi."
+                stringResource(R.string.bluetooth_for_cange_data_between_devices)
             } else {
-                "Обмен данными между мобильным приложением и сервером абонентского терминала осуществляется с помощью каналов  радиосвязи Bluetooth или Wi-Fi."
+                stringResource(R.string.bluetooth_for_cange_data_between_devices)
             }
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround) {
                 Text(textToShow)
             }
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround) {
-                Text("Для корректной работы приложения необходимо предоставить пользовательские разрешения.")
+                Text(stringResource(R.string.for_correct_work_need_permission))
             }
             Spacer(modifier = Modifier.size(40.dp))
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround) {
                 Button(onClick = {
             permissionsState.launchMultiplePermissionRequest()
                 }) {
-                    Text("Предоставить разрешения")
+                    Text(stringResource(R.string.push_permission))
                 }
             }
         }

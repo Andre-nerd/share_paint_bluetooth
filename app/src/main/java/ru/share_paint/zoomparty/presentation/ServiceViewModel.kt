@@ -7,13 +7,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import ru.share_paint.zoomparty.domain.config.RemoteServiceProvider
 import ru.share_paint.zoomparty.domain.BaseService
-import ru.share_paint.zoomparty.domain.model.BluetoothWorkProfile
 import ru.share_paint.zoomparty.domain.config.Configuration
 import ru.share_paint.zoomparty.domain.config.Configuration.SHARED_PREF
+import ru.share_paint.zoomparty.domain.config.RemoteServiceProvider
 import ru.share_paint.zoomparty.domain.createMessage
+import ru.share_paint.zoomparty.domain.model.BluetoothWorkProfile
 import java.io.IOException
 import javax.inject.Inject
 
@@ -23,7 +25,10 @@ class ServiceViewModel @Inject constructor(
     private val serviceProvider: RemoteServiceProvider
 ) : ViewModel() {
     private var remoteService: BaseService? = null
-    private val sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
+    private val sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+    private val _showSelectGameType = MutableStateFlow(true)
+    val showSelectGameType:StateFlow<Boolean>
+        get() = _showSelectGameType
 
     fun connectionWithRemoteService(device: BluetoothDevice?) {
        remoteService = if(Configuration.profileDevice == BluetoothWorkProfile.MASTER ){
@@ -68,7 +73,7 @@ class ServiceViewModel @Inject constructor(
     fun readSettingToSharedPref() {
         val profileName = sharedPreferences.getString(KEY_MODE_DEVICE, BluetoothWorkProfile.MASTER.mName) ?: BluetoothWorkProfile.MASTER.mName
         Configuration.findProfileByName(profileName)
-        val address = sharedPreferences.getString(KEY_ADDRESS_DEVICE, "00:00:00:00:00:00") ?: "00:00:00:00:00:00"
+        val address = sharedPreferences.getString(KEY_ADDRESS_DEVICE, DEFAULT_MAC) ?: DEFAULT_MAC
         Configuration.setLastDevice(address = address)
     }
 
@@ -76,6 +81,10 @@ class ServiceViewModel @Inject constructor(
         val dFrame = createMessage(cX, cY, dX, dY, color, widthLine)
         sendData(dFrame)
     }
+    fun setSelectGameType(value:Boolean){
+        _showSelectGameType.value = value
+    }
+
 
     override fun onCleared() {
         super.onCleared()
@@ -87,5 +96,6 @@ class ServiceViewModel @Inject constructor(
         const val KEY_MODE_DEVICE = "MODE_DEVICE"
         const val KEY_ADDRESS_DEVICE = "ADDRESS_DEVICE"
         const val VIEW_MODEL_LOG = "VIEW_MODEL_LOG"
+        const val DEFAULT_MAC = "00:00:00:00:00:00"
     }
 }

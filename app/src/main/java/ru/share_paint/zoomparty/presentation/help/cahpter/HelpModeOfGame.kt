@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -34,9 +35,10 @@ import ru.tic_tac_toe.zoomparty.R
 
 
 @Composable
-fun HelpAboutApp(
+fun HelpModeOfGame(
     onDismissRequest:() -> Unit,
 ) {
+    val context = LocalContext.current
     Dialog(
         onDismissRequest = { onDismissRequest() },
         properties = DialogProperties(usePlatformDefaultWidth = false)
@@ -51,56 +53,32 @@ fun HelpAboutApp(
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxSize(),
+                    .fillMaxSize()
+                    .padding(sUiPadding.dp),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
                     modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .padding(sUiPadding.dp),
-                    text = stringResource(R.string.info_about_app),
+                        .align(Alignment.CenterHorizontally),
+                    text = stringResource(R.string.mode_of_game),
                     fontSize = fontSize.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
                     modifier = Modifier
-                        .align(Alignment.Start)
-                        .padding(sUiPadding.dp),
-                    text = stringResource(R.string.draw_together_1_1),
+                        .align(Alignment.Start),
+                    text = stringResource(R.string.help_mode_of_game_1),
                     style = styleAboutText
                 )
-
                 Image(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(nPadding.dp)
-                        .clickable { },
+                        .clickable {},
                     contentScale = ContentScale.FillWidth,
-                    painter = painterResource(id = R.drawable.help_draw_1_3), contentDescription = null,
+                    painter = painterResource(id = R.drawable.help_mode__of_game_1_1), contentDescription = null,
                 )
-                Text(
-                    modifier = Modifier
-                        .align(Alignment.Start)
-                        .padding(sUiPadding.dp),
-                    text = stringResource(R.string.draw_together_1_2),
-                    style = styleAboutText
-                )
-                Text(
-                    modifier = Modifier
-                        .align(Alignment.Start)
-                        .padding(sUiPadding.dp),
-                    text = stringResource(R.string.draw_together_1_3),
-                    style = styleAboutText
-                )
-                Text(
-                    modifier = Modifier
-                        .align(Alignment.Start)
-                        .padding(sUiPadding.dp),
-                    text = stringResource(R.string.version_app),
-                    style = styleAboutText
-                )
-
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(),

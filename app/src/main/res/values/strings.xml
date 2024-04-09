@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Share Paint</string>
     <string name="dismiss_dialog">Отмена</string>
+    <string name="once_session">Одиночная</string>
+    <string name="twice_session">Сессия вдвоем</string>
     <string name="confirm_dialog">OK</string>
     <string name="_00_00_00_00_00_00">00:00:00:00:00:00</string>
     <string name="no_name">no name</string>
@@ -14,4 +16,34 @@
     <string name="close_dialog">Закрыть</string>
     <string name="skip_dialog">Пропустить</string>
     <string name="need_help">Интрукция</string>
+    <string name="first_gamer_became_master">Перед началом игры убедитесь, что устройства установили сопряжение по Bluetooth. О том как это сделать читайте в разделе \"Помощь\".\n\nПервый игрок выбирает роль \"Мастер сессии\".</string>
+    <string name="game_on_twice_devices">Игра на двух устройствах</string>
+    <string name="second_gamer_became_slave">Второй игрок выбирает роль \"Участник сессии\".\nВ разделе \"Подключиться к мастер-устройству\" выбирает устройство первого игрока.\nМожно начинать игру.\nПри следующем запуске приложения, можно пропустить этот этап, так как предыдущие настройки уже сохранены в приложении.</string>
+    <string name="when_setting_ok_play">Если настройки установлены - начните игру</string>
+    <string name="start_play">Начать игру</string>
+    <string name="master_session">Мастер сесcии</string>
+    <string name="slave_session">Участник сессии</string>
+    <string name="connect_to_dover_device">Подключиться к мастер-устройству:</string>
+    <string name="list_master_devices">Cписок мастер-устройств</string>
+    <string name="dover_devices_not_found">Доверенных устройств не найдено. Проверьте подключение bluetooth</string>
+    <string name="select_type_of_game">Выберите тип игры:</string>
+    <string name="bluetooth_not_available_twice_session_not_available">Bluetooth не доступен на устройстве. Cecсия \"Вдвоем\" не поддерживается устройством</string>
+    <string name="bluetooth_for_cange_data_between_devices">Обмен данными между мобильными устройствами в режиме \"Сессия вдвоем\" осуществляется с помощью Bluetooth.</string>
+    <string name="for_correct_work_need_permission">Для корректной работы приложения необходимо предоставить пользовательские разрешения.</string>
+    <string name="push_permission">Предоставить разрешения</string>
+    <string name="draw_together_1_1">Приложение можно использовать для рисования вдвоем. Каждый участник рисует свою часть на дисплее своего устройства, на экране отображается совместная картинка.</string>
+    <string name="draw_together_1_2">Совместное рисование часто помогает узнать больше друг о друге, о взглядах на жизнь или на отдельные события в жизни.\nДва человека рисуют то, как они видят ту или иную ситуацию, а на экране девайса отображается их совмещенное видение.\nПриложение можно использовать и просто для развлечения, рисуя совместные шуточные картинки.\n</string>
+    <string name="draw_together_1_3">Обмен данными между устройствами, в режиме \"Сессия вдвоем\",  осуществляется с помощью Bluetooth. О том, как подключить устройства через Bluetooth читайте в главе «Сессия вдвоем».</string>
+    <string name="about_app">Информация о приложении</string>
+    <string name="back_to_setting">Вернуться в \"Настройки\"</string>
+    <string name="back_to_game">Вернуться к игре</string>
+    <string name="twice_session_title">Сессия вдвоем\n</string>
+    <string name="info_about_app">Информация о приложении</string>
+    <string name="twice_session_connect_bluetooth">Для использования режима «Сессия вдвоем» необходимо установить сопряжение между двумя устройствами, с помощью стандартных функций android.\nПодробно о том, как установить Bluetooth соединение между двумя устройствами можно прочитать здесь:\n</string>
+    <string name="twice_session_select_role_1">После того, как устройства установили между собой Bluetooth соединение, можно выбирать режим игры «Сессия вдвоем».\nОдин из игроков выбирает роль \"Мастер сессии\".\n</string>
+    <string name="twice_session_select_role_2">Второй игрок выбирает роль \"Участник сессии\".\nНажимает кнопку (поз. 1) и выбирает устройство первого игрока, который выбрал роль \"Мастер сессии\".</string>
+    <string name="twice_session_start_game">Теперь все необходимые настройки для режима «Сессия вдвоем» сделаны, можно начинать игру.\nПри следующем запуске приложения, можно пропустить этот этап, так как предыдущие настройки уже сохранены в приложении.</string>
+    <string name="mode_of_game">Режимы игры</string>
+    <string name="help_mode_of_game_1">При запуске приложения появится всплывающее окно, с выбором режима игры.\nРежим одиночный, позволяет играть на устройстве без подключения по Bluetooth к другому устройству.\nРежим «Сессия вдвоем» позволяет установить связь между устройствами и рисовать изображением совместно с другим участником сессии.\n\nО том, как настроить совместное рисование читайте в главе «Сессия вдвоем».\n</string>
+    <string name="version_app">Версия 1.0</string>
 </resources>
