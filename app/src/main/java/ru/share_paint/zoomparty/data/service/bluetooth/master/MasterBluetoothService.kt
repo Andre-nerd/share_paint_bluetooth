@@ -18,6 +18,7 @@ import ru.share_paint.zoomparty.domain.config.Configuration.F_BUFFER_VALUE
 import ru.share_paint.zoomparty.domain.model.ErrorConnect
 
 import ru.share_paint.zoomparty.domain.model.WrapperDataContainer
+import ru.share_paint.zoomparty.domain.reportAboutCrash
 import java.io.IOException
 import javax.inject.Inject
 
@@ -39,6 +40,7 @@ class MasterBluetoothService @Inject constructor(private val dataContainer: Wrap
             }
         } catch (e: IOException) {
             Log.d(BT_LOG_TAG, "ConnectedThread error fun getInputData(mmSocket)")
+            reportAboutCrash("class MasterBluetoothService | ConnectedThread error fun getInputData(mmSocket)", e)
         }
     }
 

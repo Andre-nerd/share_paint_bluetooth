@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id ("com.google.dagger.hilt.android")
     id ("kotlin-kapt")
+    id("com.google.firebase.crashlytics")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -64,6 +66,10 @@ dependencies {
     // Hilt
     implementation ("com.google.dagger:hilt-android:2.51.1")
     kapt ("com.google.dagger:hilt-compiler:2.51.1")
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+    implementation("com.google.firebase:firebase-crashlytics")
+    implementation("com.google.firebase:firebase-analytics")
 
 
     testImplementation("junit:junit:4.13.2")

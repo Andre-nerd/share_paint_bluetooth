@@ -6,7 +6,6 @@ import android.bluetooth.BluetoothSocket
 import android.util.Log
 import ru.share_paint.zoomparty.App
 import ru.share_paint.zoomparty.domain.config.Configuration.BT_LOG_TAG
-
 import java.io.IOException
 import java.util.UUID
 

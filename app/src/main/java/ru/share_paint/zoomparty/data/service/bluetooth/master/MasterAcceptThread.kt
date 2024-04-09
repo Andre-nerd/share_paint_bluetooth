@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothSocket
 import android.util.Log
 import ru.share_paint.zoomparty.App
 import ru.share_paint.zoomparty.domain.config.Configuration.BT_LOG_TAG
+import ru.share_paint.zoomparty.domain.reportAboutCrash
 import java.io.IOException
 import java.util.UUID
 
@@ -23,11 +24,12 @@ class MasterAcceptThread(private val callback:(s: BluetoothSocket)->Unit) : Thre
                 mmServerSocket?.accept()
             } catch (e: IOException) {
                 Log.e(BT_LOG_TAG, "Socket's accept() method failed", e)
+                reportAboutCrash("class MasterAcceptThread | Socket's accept() method failed", e)
                 shouldLoop = false
                 null
             }
             socket?.also {
-                Log.e(BT_LOG_TAG, "Socket's created $socket ${socket.remoteDevice.address}")
+                Log.e(BT_LOG_TAG, "MasterAcceptThread | Socket's created $socket ${socket.remoteDevice.address}")
                 callback.invoke(socket)
                 mmServerSocket?.close()
                 shouldLoop = false
@@ -40,6 +42,7 @@ class MasterAcceptThread(private val callback:(s: BluetoothSocket)->Unit) : Thre
             mmServerSocket?.close()
         } catch (e: IOException) {
             Log.e(BT_LOG_TAG, "Could not close the connect socket", e)
+            reportAboutCrash("class MasterAcceptThread | Could not close the connect socket", e)
         }
     }
 }

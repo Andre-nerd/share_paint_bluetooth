@@ -5,6 +5,8 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
 import androidx.compose.ui.graphics.Color
+import com.google.firebase.Firebase
+import com.google.firebase.crashlytics.crashlytics
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.Flow
@@ -84,4 +86,9 @@ fun EditText.changeTextFlow(): Flow<String> {
             this@changeTextFlow.removeTextChangedListener(textChangeListener)
         }
     }
+}
+
+fun reportAboutCrash(message:String, e:Throwable){
+    Firebase.crashlytics.log("$message| $e")
+    Firebase.crashlytics.recordException(e)
 }

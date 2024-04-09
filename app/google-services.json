@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "23857900484",
+    "project_id": "share-paint-9a620",
+    "storage_bucket": "share-paint-9a620.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23857900484:android:1dba4fc84aa61096405291",
+        "android_client_info": {
+          "package_name": "ru.share_paint.zoomparty"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQEm3dtECrqpd_kMujTFq0kHz4GnhJnOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
