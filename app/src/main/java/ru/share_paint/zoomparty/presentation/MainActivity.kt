@@ -22,6 +22,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import dagger.hilt.android.AndroidEntryPoint
 import ru.share_paint.zoomparty.App
+import ru.share_paint.zoomparty.domain.config.Configuration
 import ru.share_paint.zoomparty.domain.model.WrapperDataContainer
 import ru.share_paint.zoomparty.presentation.navigation.NavigateRoute
 import ru.share_paint.zoomparty.presentation.ui.theme.Share_Paint_Theme
@@ -57,6 +58,7 @@ class MainActivity : ComponentActivity() {
     }
 
 
+    @SuppressLint("MissingPermission")
     @OptIn(ExperimentalPermissionsApi::class)
     @Composable
     private fun FeatureThatRequiresPermissions() {
@@ -80,6 +82,8 @@ class MainActivity : ComponentActivity() {
             }
         )
         if (permissionsState.allPermissionsGranted) {
+            Log.d(Configuration.BT_LOG_TAG, "bluetoothAdapter!!.bondedDevices ${App.bluetoothAdapter!!.bondedDevices.size} ")
+            Configuration.setBoundedDevices(App.bluetoothAdapter!!.bondedDevices)
             Box(modifier = Modifier.fillMaxWidth()) {
                 MainScreen(dataContainer)
             }

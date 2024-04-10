@@ -21,7 +21,7 @@ class App : Application() {
         val bluetoothManager = applicationContext.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
         try {
             bluetoothAdapter = bluetoothManager.adapter
-            Configuration.setBoundedDevices(bluetoothAdapter!!.bondedDevices)
+            Log.d(Configuration.BT_LOG_TAG, "bluetoothAdapter $bluetoothAdapter ")
         } catch (t:Throwable){
             Log.e(Configuration.BT_LOG_TAG, getString(R.string.bluetooth_adapter_is_not_available))
         }
