@@ -4,7 +4,7 @@ Drawing together often helps to learn more about each other, about each other's 
 Two people draw how they see a particular situation, and their combined vision is displayed on the phone screen.
 The Share Paint app can also be used just for fun, drawing funny pictures together.
 
-# Technology stack
+Technology stack
 # Jetpack Compose, Bluetooth, TCP/IP Socket Server, Socket Client, Hilt, MVVM
 
-![alt text]https://github.com/Andre-nerd/share_paint_bluetooth/blob/master/image_resource/images%20finish/help_draw_1_3.png
+![alt text](https://github.com/Andre-nerd/share_paint_bluetooth/blob/master/image_resource/images%20finish/help_draw_1_3.png)
