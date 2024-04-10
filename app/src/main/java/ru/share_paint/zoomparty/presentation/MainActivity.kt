@@ -82,8 +82,9 @@ class MainActivity : ComponentActivity() {
             }
         )
         if (permissionsState.allPermissionsGranted) {
-            Log.d(Configuration.BT_LOG_TAG, "bluetoothAdapter!!.bondedDevices ${App.bluetoothAdapter!!.bondedDevices.size} ")
-            Configuration.setBoundedDevices(App.bluetoothAdapter!!.bondedDevices)
+            if(App.bluetoothAdapter != null) {
+                Configuration.setBoundedDevices(App.bluetoothAdapter!!.bondedDevices)
+            }
             Box(modifier = Modifier.fillMaxWidth()) {
                 MainScreen(dataContainer)
             }
