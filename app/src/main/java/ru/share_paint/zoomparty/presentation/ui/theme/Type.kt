@@ -6,6 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.sp
 import ru.tic_tac_toe.zoomparty.R
 
@@ -41,6 +42,14 @@ val styleAboutText = TextStyle(
     lineHeight = 18.sp,
     fontFamily = FontFamily.SansSerif,
     textAlign = TextAlign.Justify
+)
+val stylePost = TextStyle(
+    fontSize = fontSizeSmall.sp,
+    lineHeight = 24.sp,
+    fontFamily = FontFamily.Monospace,
+    textAlign = TextAlign.Justify,
+    color = CianDark,
+    textDecoration = TextDecoration.Underline
 )
 val styleAboutTextBold = TextStyle(
     fontSize = fontSizeSmall.sp,

@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import ru.share_paint.zoomparty.presentation.help.cahpter.HelpAboutApp
 import ru.share_paint.zoomparty.presentation.help.cahpter.HelpModeOfGame
+import ru.share_paint.zoomparty.presentation.help.cahpter.HelpPrivacyPolicy
 import ru.share_paint.zoomparty.presentation.help.cahpter.HelpTwiceSession
 import ru.share_paint.zoomparty.presentation.navigation.Route
 import ru.share_paint.zoomparty.presentation.ui.theme.BottomBarPadding
@@ -41,12 +42,18 @@ fun HelpScreen(navController: NavHostController) {
     var openArticleAboutApp by remember { mutableStateOf(false) }
     var openArticleTwiceSession by remember { mutableStateOf(false) }
     var openArticleModeOfGame by remember { mutableStateOf(false) }
+    var openArticlePrivacyPolicy by remember { mutableStateOf(false) }
 
     Box {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(start = sUiPadding.dp, end = sUiPadding.dp, top = nUiPadding.dp, bottom = (BottomBarPadding).dp)
+                .padding(
+                    start = sUiPadding.dp,
+                    end = sUiPadding.dp,
+                    top = nUiPadding.dp,
+                    bottom = (BottomBarPadding).dp
+                )
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -74,6 +81,14 @@ fun HelpScreen(navController: NavHostController) {
                 onClick = { openArticleTwiceSession = !openArticleTwiceSession }
             ) {
                 Text(text = stringResource(id = R.string.twice_session_title), textAlign = TextAlign.Center)
+            }
+            ElevatedButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 8.dp),
+                onClick = { openArticlePrivacyPolicy = !openArticlePrivacyPolicy }
+            ) {
+                Text(text = stringResource(id = R.string.privacy_policy_title), textAlign = TextAlign.Center)
             }
         }
     }
@@ -105,6 +120,7 @@ fun HelpScreen(navController: NavHostController) {
     if (openArticleAboutApp) HelpAboutApp { openArticleAboutApp = !openArticleAboutApp }
     if (openArticleTwiceSession) HelpTwiceSession {openArticleTwiceSession = !openArticleTwiceSession}
     if (openArticleModeOfGame) HelpModeOfGame{openArticleModeOfGame = !openArticleModeOfGame}
+    if (openArticlePrivacyPolicy) HelpPrivacyPolicy {openArticlePrivacyPolicy = !openArticlePrivacyPolicy}
 
 }
 
