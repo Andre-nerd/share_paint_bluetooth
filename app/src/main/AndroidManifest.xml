@@ -25,7 +25,7 @@
         <activity
             android:name="ru.share_paint.zoomparty.presentation.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Tic_tac_toe">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
