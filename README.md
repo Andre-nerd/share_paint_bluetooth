@@ -10,5 +10,3 @@ Technology stack
 ![alt text](https://github.com/Andre-nerd/share_paint_bluetooth/blob/master/image_resource/images%20finish/help_draw_1_3.png)
 ![alt text](https://github.com/Andre-nerd/share_paint_bluetooth/blob/master/image_resource/images%20finish/help_twice_session_master.png)
 ![alt text](https://github.com/Andre-nerd/share_paint_bluetooth/blob/master/image_resource/images%20finish/help_twice_session_slave.png)
-
-
